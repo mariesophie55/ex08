@@ -106,18 +106,18 @@ findAdjacence(var i, var j, var matrice, var bMatrice, var groupID){
 }
 
 void main(){
-  //sentenceCreator(listeDeMots, nombreDePhrase);
+
   sentenceCreator(q1Mots, 10);
 
   sortByLastName(q2Members);
   sortByFirstName(q2Members);
   printByGivenLetter(q2Members, 'K');
 
-  //addMember(association(s), prénom, nomFamille, e-mail, listeDeMembres);
+
   addMember('HPA', 'Max', 'Power', 'MP@gmail.com', q2Members);
-  //removeMember(prénom, nomFamille, listeDeMembres);
+
   removeMember('Bob', 'Sley', q2Members);
-  //updateMember(association(s), prénom, nomFamille , email , listeDeMembres);
+
   updateMember(['SPA', 'AOFI'], 'Buzz', 'Killington' , 'iddqd@aol.com' , q2Members);
 
   findGroups(q4);

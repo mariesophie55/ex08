@@ -29,12 +29,11 @@ List<List<int>> q5 =
       [13,12,5,8],
       [9,14,10, ]];
 
-//simple fonction qui print une matrice ligne par ligne
 printMatrix(var matrix){;
   for(var i = 0; i < matrix.length; i++){
     print(matrix[i]);}}
 
-//simple fonction qui crée une matrice de booléen de grosseur ixj remplie par true ou par false
+
 createFilledBoolMatrix(var i, var j, var tf){
   var bMatrix = new List<List<bool>>.generate(j, (_) => new List<bool>.filled(i, tf), growable: false);
   return bMatrix;
