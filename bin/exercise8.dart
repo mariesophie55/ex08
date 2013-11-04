@@ -4,12 +4,12 @@ import 'dart:math';
 
 part 'ex08_var.dart';
 
-
 sentenceCreator(var listOfWords, var numberOfSentence){
   print('--- q1 ---');
   var rGen = new Random();
   var minWords = 3;
   var maxWords = 6;
+
   for(var i = 1; i <= numberOfSentence; i++){
     var sentence = '';
     var sentenceLength = minWords + rGen.nextInt(maxWords - minWords +1);
@@ -21,6 +21,10 @@ sentenceCreator(var listOfWords, var numberOfSentence){
   print('');
 }
 
+printMatrix(var matrix){
+  for(var i in matrix){
+    print(i);}
+}
 
 
 sortByLastName(var members){
@@ -30,9 +34,8 @@ sortByLastName(var members){
 
 sortByFirstName(var members){
   members.sort((x, y) => x['firstName'].compareTo(y['firstName']));
-  print('--- q2 : sort by first name ---');printMatrix(members);print('');
+  print('--- q2 : sort by first name ---'); printMatrix(members); print('');
 }
-
 
 printByGivenLetter(var members, var letter){
   print('--- q2 : print member with last name starting with : $letter ---');
@@ -59,7 +62,6 @@ removeMember(var firstName, var lastName, var memberList){
   print('--- q3 : remove a member : $firstName $lastName ---'); printMatrix(memberList); print('');
 }
 
-
 updateMember(var associationName, var firstName, var lastName, var email, var memberList){
   for(var i = 0; i < memberList.length; i++){
     if(memberList[i]['firstName'] == firstName && memberList[i]['lastName'] == lastName){
@@ -70,12 +72,20 @@ updateMember(var associationName, var firstName, var lastName, var email, var me
   print('--- q3 : update member : $firstName $lastName ---'); printMatrix(memberList); print('');
 }
 
+isAMember(var firstName, var lastName, var listOfMembers){
+  for(var i in listOfMembers){
+    if(i['firstName'] == firstName && i['lastName'] == lastName)
+      return true;}
+  return false;
+}
+
+
 findGroups(var mat){
   var possibleGroupIDs = 'abcdefghijklmnopqrstuvwxyz';
   var index = 0;
   var currentGroupID = possibleGroupIDs[index];
   var boolMat = createFilledBoolMatrix(mat[0].length, mat.length, false);
-  printMatrix(mat); print('');
+  print('--- q4  ---'); printMatrix(mat); print('');
 
   for(var i = 0; i < mat.length; i++){
     for(var j = 0; j < mat[i].length; j++){
@@ -83,7 +93,6 @@ findGroups(var mat){
         findAdjacence(i ,j, mat, boolMat, currentGroupID);
         index++;
         currentGroupID = possibleGroupIDs[index];}}}
-
 
   printMatrix(mat); print('');
 }
@@ -105,21 +114,29 @@ findAdjacence(var i, var j, var matrice, var bMatrice, var groupID){
         findAdjacence(i+1, j+1, matrice, bMatrice, groupID);}}}
 }
 
-void main(){
+createFilledBoolMatrix(var i, var j, var tf){
+  var bMatrix = new List<List<bool>>.generate(j, (_) => new List<bool>.filled(i, tf), growable: false);
+  return bMatrix;
+}
 
+
+void main(){
   sentenceCreator(q1Mots, 10);
 
   sortByLastName(q2Members);
   sortByFirstName(q2Members);
   printByGivenLetter(q2Members, 'K');
 
-
+  assert(!isAMember('Max', 'Power', q2Members));
   addMember('HPA', 'Max', 'Power', 'MP@gmail.com', q2Members);
 
+  assert(isAMember('Bob', 'Sley', q2Members));
   removeMember('Bob', 'Sley', q2Members);
 
+  assert(isAMember('Buzz', 'Killington', q2Members));
   updateMember(['SPA', 'AOFI'], 'Buzz', 'Killington' , 'iddqd@aol.com' , q2Members);
 
   findGroups(q4);
+
 
 }

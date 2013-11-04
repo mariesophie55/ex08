@@ -22,19 +22,3 @@ List<List<String>> q4 =
       ['1','0','0','1','0','1','0','1'],
       ['0','0','0','0','0','1','0','0'],
       ['0','1','1','0','0','1','1','0']];
-
-List<List<int>> q5 =
-     [[2,6,3,1],
-      [11,7,4,15],
-      [13,12,5,8],
-      [9,14,10, ]];
-
-printMatrix(var matrix){;
-  for(var i = 0; i < matrix.length; i++){
-    print(matrix[i]);}}
-
-
-createFilledBoolMatrix(var i, var j, var tf){
-  var bMatrix = new List<List<bool>>.generate(j, (_) => new List<bool>.filled(i, tf), growable: false);
-  return bMatrix;
-}
